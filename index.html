@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bookshelf Portfolio — Interactive Books</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header><h1>Erin Kim Portfolio</h1></header>
+
+  <main class="bookshelf-container">
+    <div class="bookshelf">
+      <!-- Top shelf -->
+      <div class="shelf top-shelf">
+        <div class="book-wrapper" data-project="project1">
+          <div class="book">
+            <div class="front cover"><span class="cover-text">Project 1</span></div>
+            <div class="pages"></div>
+            <div class="spine"></div>
+            <div class="back cover">Project 1</div>
+          </div>
+        </div>
+
+        <div class="book-wrapper" data-project="project2">
+          <div class="book">
+            <div class="front cover"><span class="cover-text">Project 2</span></div>
+            <div class="pages"></div>
+            <div class="spine"></div>
+            <div class="back cover">Project 2</div>
+          </div>
+        </div>
+
+        <div class="book-wrapper" data-project="project3">
+          <div class="book">
+            <div class="front cover"><span class="cover-text">Project 3</span></div>
+            <div class="pages"></div>
+            <div class="spine"></div>
+            <div class="back cover">Project 3</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Middle shelf -->
+      <div class="shelf middle-shelf">
+        <div class="book-wrapper" data-project="project4">
+          <div class="book">
+            <div class="front cover"><span class="cover-text">Project 4</span></div>
+            <div class="pages"></div>
+            <div class="spine"></div>
+            <div class="back cover">Project 4</div>
+          </div>
+        </div>
+
+        <div class="book-wrapper" data-project="project5">
+          <div class="book">
+            <div class="front cover"><span class="cover-text">Project 5</span></div>
+            <div class="pages"></div>
+            <div class="spine"></div>
+            <div class="back cover">Project 5</div>
+          </div>
+        </div>
+
+        <div class="book-wrapper" data-project="project6">
+          <div class="book">
+            <div class="front cover"><span class="cover-text">Project 6</span></div>
+            <div class="pages"></div>
+            <div class="spine"></div>
+            <div class="back cover">Project 6</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom shelf -->
+      <div class="shelf bottom-shelf">
+        <div class="book-wrapper" data-project="project7">
+          <div class="book">
+            <div class="front cover"><span class="cover-text">Project 7</span></div>
+            <div class="pages"></div>
+            <div class="spine"></div>
+            <div class="back cover">Project 7</div>
+          </div>
+        </div>
+
+        <div class="book-wrapper" data-project="project8">
+          <div class="book">
+            <div class="front cover"><span class="cover-text">Project 8</span></div>
+            <div class="pages"></div>
+            <div class="spine"></div>
+            <div class="back cover">Project 8</div>
+          </div>
+        </div>
+
+        <div class="decoration stuffed-animal">🧸</div>
+      </div>
+    </div>
+    <!-- small bedside lamp next to the bookshelf -->
+    <div class="lamp-wrapper" aria-hidden="false">
+      <div class="lamp">
+        <div class="lamp-base"></div>
+        <div class="lamp-stem"></div>
+        <div class="lamp-shade">
+          <div class="lamp-bulb"></div>
+        </div>
+        <button id="lampToggle" class="lamp-switch" aria-pressed="false" aria-label="Toggle lamp"></button>
+      </div>
+    </div>
+  </main>
+
+  <!-- viewer overlay (shown when a book is pulled + opened) -->
+  <div id="bookViewer" class="book-viewer hidden" aria-hidden="true">
+    <div class="viewer-stage">
+      <div class="book-scene">
+        <!-- The JS populates this scene (cloned book + pages) -->
+      </div>
+
+      <div class="viewer-controls">
+        <button id="prevPage" class="ctrl">◀ Prev</button>
+        <button id="nextPage" class="ctrl">Next ▶</button>
+        <button id="closeViewer" class="ctrl close">Close ✕</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

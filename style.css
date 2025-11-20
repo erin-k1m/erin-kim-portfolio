@@ -1,0 +1,299 @@
+/* ---------- base visuals ---------- */
+:root{
+  --shelf-width: 500px;
+  --book-height: 160px;
+  --book-width: 30px;
+  --book-depth: 20px;
+  --bg:#f5f2ed;
+  --wood1:#a06d4d;
+  --wood2:#8b5a2b;
+}
+*{box-sizing:border-box}
+body{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  /* Nighttime bedroom gradient (wall + subtle vignette) */
+  --night-sky-1: #0b1221;
+  --night-sky-2: #0f1a2b;
+  background: radial-gradient(ellipse at 15% 10%, rgba(220,230,255,0.03) 0%, transparent 12%), linear-gradient(180deg,var(--night-sky-1),var(--night-sky-2));
+  padding: 30px;
+  display:flex; flex-direction:column; align-items:center;
+  min-height:100vh;
+}
+header{margin-bottom:18px}
+.bookshelf-container{width:100%; display:flex; justify-content:center}
+.bookshelf{
+  width:var(--shelf-width);
+  background: linear-gradient(to bottom, var(--wood1), var(--wood2));
+  padding:24px; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,.25);
+  display:flex; flex-direction:column; gap:28px;
+  transform-style: preserve-3d;
+
+}
+
+/* Lamps and lighting -------------------------------------------------- */
+.bookshelf-container{ position:relative; display:flex; gap:28px; align-items:flex-end; justify-content:center; }
+
+/* Moonlight overlay — subtle ambient from window (top-left) */
+body::before{
+  content: "";
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background: radial-gradient(circle at 12% 8%, rgba(210,230,255,0.06) 0%, rgba(210,230,255,0.03) 6%, transparent 18%);
+}
+
+/* Darken book colors slightly to match night mood */
+.book .front, .book .back, .spine { filter: brightness(.7) saturate(.9); }
+
+/* Lamp wrapper sits to the right of the bookshelf */
+.lamp-wrapper{ width:120px; display:flex; align-items:flex-end; justify-content:center; pointer-events:auto; }
+.lamp{ position:relative; width:64px; height:180px; display:flex; align-items:flex-end; justify-content:center; }
+.lamp-base{ width:40px; height:10px; background:#222; border-radius:6px; box-shadow:0 6px 12px rgba(0,0,0,.6) inset; transform:translateY(6px); }
+.lamp-stem{ width:6px; height:70px; background:#444; position:absolute; bottom:34px; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,.6); }
+.lamp-shade{ width:80px; height:46px; background:linear-gradient(180deg,#2b2b2b,#1f1f1f); border-radius:6px; position:absolute; bottom:84px; display:flex; align-items:center; justify-content:center; overflow:visible; box-shadow: 0 10px 20px rgba(0,0,0,.6); transform-origin: center bottom; transition: transform .18s ease; }
+.lamp-bulb{ width:18px; height:18px; background:radial-gradient(circle,#fff 0%, #ffd 30%, #f0c56a 60%, #f0b800 100%); border-radius:50%; opacity:0; transform:scale(.6); transition: opacity .25s ease, transform .25s ease; box-shadow: 0 0 18px rgba(255,214,140,0.0); }
+
+/* physical toggle switch */
+.lamp-switch{ position:absolute; right:-6px; bottom:8px; width:14px; height:28px; background:#d4d4d4; border-radius:6px; border:0; box-shadow: 0 2px 6px rgba(0,0,0,.4); transform:rotate(-18deg); cursor:pointer; }
+.lamp-switch:active{ transform:rotate(-18deg) translateY(1px); }
+
+/* Lamp light effect applied to the scene when lamp is on */
+body.lamp-on::after{
+  content: "";
+  position:fixed; inset:0; pointer-events:none; z-index:1;
+  background: radial-gradient(circle at 72% 72%, rgba(255,244,200,0.20) 0%, rgba(255,244,200,0.10) 8%, rgba(255,244,200,0.04) 18%, transparent 30%);
+  mix-blend-mode: screen; transition: opacity .28s ease;
+}
+
+/* Highlight the bookshelf more when lamp is on */
+body.lamp-on .bookshelf{ box-shadow: 0 10px 40px rgba(0,0,0,.3), 0 0 100px rgba(255,230,160,0.06) inset; }
+
+/* lamp on visual state */
+body.lamp-on .lamp-bulb{ opacity:1; transform:scale(1); box-shadow: 0 6px 42px rgba(240,180,80,0.45); }
+body.lamp-on .lamp-shade{ transform: translateY(-4px) rotate(-2deg); }
+body.lamp-on .lamp-switch{ background:#ffd27a; }
+
+/* reduce default viewer brightness in night mode */
+.book-viewer{ filter: brightness(.85); }
+
+/* shelf */
+.shelf{
+  display:flex; align-items:flex-end; gap:18px; padding:14px;
+  background: linear-gradient(to bottom, #c68642, #a06d4d);
+  border-radius:6px; height:200px; position:relative;
+  box-shadow: inset 0 -4px 12px rgba(0,0,0,0.18);
+}
+
+/* book-wrapper gives perspective */
+.book-wrapper{ perspective: 2000px;
+  transform-style: preserve-3d;
+}
+
+/* BOOK object (the 3D object we will animate) */
+.book {
+  width: var(--book-width);
+  height: var(--book-height);
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 0.55s cubic-bezier(.17,.67,.35,1.35), box-shadow .45s ease;
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 8px;
+}
+
+/* faces */
+.front, .back {
+  position:absolute; inset:0;
+  border-radius:2px;
+  display:flex; align-items:center; justify-content:center;
+  backface-visibility:hidden;
+  color:#42312c; font-weight:700; 
+  box-shadow: 2px 4px 10px rgb(179, 172, 172);
+  transform: rotateY(0deg) translateZ(calc(var(--thickness)/2.3));
+}
+.front, .back, .spine, .pages{
+  transform-origin: center center;
+}
+
+
+/* front is the cover that will act as a movable flap (opens) */
+.front {
+  background: linear-gradient(0deg,#d65f5f,#c34d4d);
+  z-index: 1;
+  transform-origin: left center;
+  transform: rotateY(0deg) translateZ(calc(var(--thickness)/2.3)) scaleZ(1.3);
+  border-radius: 3px;
+
+  /* subtle shadow along right edge to suggest thickness */
+  box-shadow:
+    2px 0 4px rgba(0,0,0,0.12), 
+    inset -1px 0 2px rgba(128, 121, 121, 0.08); 
+}
+
+/* rotate only the text on the front cover (keeps cover face intact) */
+.book .front.cover .cover-text {
+  display: inline-block;              /* allow transforms on text box */
+  transform: rotate(var(--cover-text-tilt, 90deg));
+  transform-origin: center center;
+  transition: transform 160ms ease;
+  pointer-events: none;                /* clicks go to the book */
+  padding: 0 6px;                     /* small breathing room so text doesn't sit at the very edge */
+}
+
+/* back sits behind pages */
+.back {
+  background: linear-gradient(0deg,#4e1c09,#7c3e2a);
+  z-index: 1;
+  transform-origin: center center;
+  transform: rotateY(180deg) translateZ(calc(var(--thickness)/2)) scaleZ(1.2);
+  border-radius: 3px;
+
+  /* subtle shadow along left edge */
+  box-shadow:
+    -2px 0 4px rgba(0,0,0,0.12),  /* shadow toward pages/spine */
+    inset 1px 0 2px rgba(0,0,0,0.08); /* inner page edge */
+}
+
+/* spine + pages faces */
+.spine, .pages { position:absolute; top:0; height:100%; backface-visibility:hidden; }
+
+/* thickness default; will be overwritten per-book in CSS or JS */
+:root {
+  --default-thickness: 20px; /* increased from 10px for thicker books */
+}
+.book { --thickness: var(--default-thickness); }
+
+/* spine sits on left */
+.spine {
+  width: var(--thickness) * 2;
+  left: calc(var(--thickness));
+  background: linear-gradient(180deg,#8c3b3b,#b24a4a);
+  transform: rotateY(90deg) translateZ(calc(var(--thickness)/2));
+  border-radius: 2px;
+  z-index: 1;
+
+  /* subtle highlights on top/bottom */
+  box-shadow: inset 0 1px 3px rgba(98, 92, 92, 0.551), inset 0 -1px 3px rgba(0,0,0,0.1);
+}
+
+
+/* pages block sits on right side */
+/* --- Ghibli Ivory Cotton Paper --- */
+.pages {
+  width: var(--thickness);
+  right: calc(var(--thickness) * -1);
+  background: linear-gradient(0deg,#4e1c09,#7c3e2a);;
+  transform: rotateY(90deg) translateZ(calc(var(--thickness)/-2));
+  z-index: 6;
+  border-radius: 2px;
+  box-shadow:
+    inset 0 0 6px rgba(219, 26, 26, 0.856), /* subtle overall depth */
+    inset 0 6px 12px rgba(54, 28, 28, 0.845), /* top edge shadow */
+    inset 0 -6px 12px rgba(62, 49, 49, 0.551); /*shadow on bottom edge*/
+}
+
+
+
+
+/* small random thickness pattern (GHIBLI style) */
+.book-wrapper:nth-child(1) .book { --thickness: 25px; }
+.book-wrapper:nth-child(2) .book { --thickness: 30px; }
+.book-wrapper:nth-child(3) .book { --thickness: 20px; }
+.book-wrapper:nth-child(4) .book { --thickness: 35px; }
+.book-wrapper:nth-child(5) .book { --thickness: 26px; }
+.book-wrapper:nth-child(6) .book { --thickness: 23px; }
+.book-wrapper:nth-child(7) .book { --thickness: 32px; }
+.book-wrapper:nth-child(8) .book { --thickness: 29px; }
+
+/* tiny tilt variants per book to feel natural */
+.book-wrapper:nth-child(odd) .book { transform: rotateZ(-2deg); }
+.book-wrapper:nth-child(even) .book { transform: rotateZ(1.5deg); }
+
+/* hover (spring) */
+.book-wrapper:hover .book {
+  transform: rotateY(-15deg) translateZ(14px) scale(1.06);
+  box-shadow: 10px 14px 40px rgba(0, 0, 0, 0.58);
+}
+
+/* ---------- BOOK VIEWER (pull + open scene) ---------- */
+.book-viewer{
+  position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+  pointer-events:none;
+}
+.book-viewer.hidden{display:none}
+
+.viewer-stage{
+  width:900px; max-width:95vw; height:560px; background:transparent;
+  pointer-events:auto; display:flex; align-items:center; justify-content:center;
+}
+
+/* book-scene: where cloned book appears and opens */
+.book-scene{
+  width:720px; height:420px; perspective:2000px; position:relative;
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* cloned book container */
+.cloned-book{
+  width:480px; height:320px; transform-style:preserve-3d; position:relative;
+  transform-origin: left center;
+}
+
+/* scaled faces for cloned book */
+.cloned-book .front, .cloned-book .back {
+  position:absolute; inset:0; border-radius:6px; backface-visibility:hidden;
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.cloned-book .front{
+  transform-origin:left center;
+  z-index:4; background:#b34d4d; color:white; font-size:20px;
+}
+.cloned-book .back{background:#6e3d2b; color:#fff; transform: translateZ(-18px);}
+
+/* pages container (the spread) */
+.spread{
+  position:absolute; left:0; top:0; width:100%; height:100%; transform-style:preserve-3d;
+  display:flex; align-items:stretch; justify-content:center; pointer-events:auto;
+  z-index:2; padding-left:60px; /* room for spine hinge */
+}
+
+/* each page face */
+.page{
+  width:50%; height:100%;
+  padding:14px; font-size:16px; color:#111;
+  display:flex; align-items:center; justify-content:center;
+  position:relative; overflow:hidden;
+  transform-origin:left center;
+  transition: transform .65s cubic-bezier(.2,.7,.2,1);
+
+  /* --- Ghibli Ivory Cotton Paper --- */
+  background: #f8f4e8;
+  background-image:
+    radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0) 45%);
+  background-size: 3px 3px, 3px 3px, 100% 100%;
+  background-position: 0 0, 1.5px 1.5px, 0 0;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+
+/* page content image */
+.page img{ max-width:100%; max-height:100%; object-fit:contain }
+
+/* flipped pages (page turning) — the left page flips to reveal next */
+.page.flipped{ transform: rotateY(-180deg); z-index:1; box-shadow:none; }
+
+/* viewer controls */
+.viewer-controls{ position:absolute; bottom:18px; left:50%; transform:translateX(-50%); display:flex; gap:10px; z-index:40;}
+.ctrl{ padding:8px 12px; border-radius:6px; background:rgba(255,255,255,0.95); border:0; box-shadow:0 4px 12px rgba(0,0,0,.12); cursor:pointer;}
+.ctrl.close{ background:#e66; color:white; }
+
+/* helper - center label for clickability hint */
+.viewer-hint{ position:absolute; top:10px; left:50%; transform:translateX(-50%); color:#fff; font-weight:600; text-shadow:0 2px 6px rgba(0,0,0,.5) }
+
+/* responsive tweaks */
+@media (max-width:880px){
+  .viewer-stage{ height:70vh }
+  .cloned-book{ width:360px; height:260px }
+  .book-scene{ width:94vw; height:70vh }
+}
