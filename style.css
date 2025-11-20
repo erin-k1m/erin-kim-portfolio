@@ -49,27 +49,78 @@ body::before{
 .lamp-base{ width:40px; height:10px; background:#222; border-radius:6px; box-shadow:0 6px 12px rgba(0,0,0,.6) inset; transform:translateY(6px); }
 .lamp-stem{ width:6px; height:70px; background:#444; position:absolute; bottom:34px; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,.6); }
 .lamp-shade{ width:80px; height:46px; background:linear-gradient(180deg,#2b2b2b,#1f1f1f); border-radius:6px; position:absolute; bottom:84px; display:flex; align-items:center; justify-content:center; overflow:visible; box-shadow: 0 10px 20px rgba(0,0,0,.6); transform-origin: center bottom; transition: transform .18s ease; }
-.lamp-bulb{ width:18px; height:18px; background:radial-gradient(circle,#fff 0%, #ffd 30%, #f0c56a 60%, #f0b800 100%); border-radius:50%; opacity:0; transform:scale(.6); transition: opacity .25s ease, transform .25s ease; box-shadow: 0 0 18px rgba(255,214,140,0.0); }
+/* small bright core — we'll keep the bulb small and let the shade and halo provide the visible light */
+.lamp-bulb{ width:10px; height:10px; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,1) 0%, rgba(255,244,200,0.9) 30%, rgba(255,220,120,0.5) 70%, transparent 100%); border-radius:50%; opacity:0; transform:scale(.6); transition: opacity .28s ease, transform .28s ease; box-shadow: 0 0 18px rgba(255,220,110,0); z-index:25; }
 
 /* physical toggle switch */
 .lamp-switch{ position:absolute; right:-6px; bottom:8px; width:14px; height:28px; background:#d4d4d4; border-radius:6px; border:0; box-shadow: 0 2px 6px rgba(0,0,0,.4); transform:rotate(-18deg); cursor:pointer; }
 .lamp-switch:active{ transform:rotate(-18deg) translateY(1px); }
 
 /* Lamp light effect applied to the scene when lamp is on */
-body.lamp-on::after{
+/* Replace global overlay with a localized halo so light originates from the lamp */
+.lamp-wrapper::before{
   content: "";
-  position:fixed; inset:0; pointer-events:none; z-index:1;
-  background: radial-gradient(circle at 72% 72%, rgba(255,244,200,0.20) 0%, rgba(255,244,200,0.10) 8%, rgba(255,244,200,0.04) 18%, transparent 30%);
-  mix-blend-mode: screen; transition: opacity .28s ease;
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  transform: translateX(-50%) translateY(-28%);
+  width: 520px;
+  height: 420px;
+  pointer-events: none;
+  z-index: 3;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, rgba(255,246,210,0.45) 0%, rgba(255,240,190,0.30) 12%, rgba(255,220,140,0.12) 28%, rgba(255,200,100,0.04) 46%, transparent 68%);
+  filter: blur(30px);
+  opacity: 0;
+  transition: opacity .32s ease, transform .32s ease;
 }
 
-/* Highlight the bookshelf more when lamp is on */
-body.lamp-on .bookshelf{ box-shadow: 0 10px 40px rgba(0,0,0,.3), 0 0 100px rgba(255,230,160,0.06) inset; }
+/* subtle pool on shelf */
+.lamp-wrapper::after{
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 82%;
+  transform: translateX(-50%);
+  width: 260px;
+  height: 64px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 20%, rgba(255,244,200,0.22) 0%, rgba(255,238,180,0.12) 30%, transparent 70%);
+  filter: blur(8px);
+  opacity: 0;
+  z-index: 2;
+  transition: opacity .28s ease, transform .28s ease;
+}
 
-/* lamp on visual state */
-body.lamp-on .lamp-bulb{ opacity:1; transform:scale(1); box-shadow: 0 6px 42px rgba(240,180,80,0.45); }
-body.lamp-on .lamp-shade{ transform: translateY(-4px) rotate(-2deg); }
-body.lamp-on .lamp-switch{ background:#ffd27a; }
+/* highlight bookshelf when lamp is on */
+body.lamp-on .bookshelf{ box-shadow: 0 10px 40px rgba(0,0,0,.3), 0 0 100px rgba(255,230,160,0.05) inset; }
+
+/* lamp on visual state: small core visible + inner shade glow and halo */
+body.lamp-on .lamp-bulb{ opacity:1; transform:scale(1); box-shadow: 0 8px 120px rgba(255,210,120,0.42); }
+body.lamp-on .lamp-wrapper::before{ opacity: 0.9; transform: translateX(-50%) translateY(-28%); }
+body.lamp-on .lamp-wrapper::after{ opacity: 1; transform: translateX(-50%) translateY(6px); }
+body.lamp-on .lamp-shade{ transform: translateY(-6px) rotateZ(-1deg); }
+body.lamp-on .lamp-pull{ filter: brightness(1.02) saturate(1.02); }
+
+/* inner shade soft gradient to make the shade itself appear lit */
+.lamp-shade::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 24%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 220px;
+  border-radius: 50% 50% 45% 45%;
+  pointer-events: none;
+  z-index: 5;
+  background: radial-gradient(ellipse at 50% 32%, rgba(255,250,232,0.98) 0%, rgba(255,246,212,0.9) 12%, rgba(255,240,190,0.76) 24%, rgba(255,230,160,0.44) 40%, rgba(255,200,110,0.16) 62%, transparent 80%);
+  filter: blur(16px);
+  opacity: 0;
+  transition: opacity .28s ease, transform .28s ease;
+}
+body.lamp-on .lamp-shade::after{ opacity: 1; transform: translateX(-50%) translateY(-6px); }
 
 /* reduce default viewer brightness in night mode */
 .book-viewer{ filter: brightness(.85); }
