@@ -7,7 +7,23 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header><h1>Erin Kim Portfolio</h1></header>
+  <!-- Window with sunlight -->
+  <div class="window">
+    <div class="sky-background">
+      <div class="sun"></div>
+      <div class="moon"></div>
+    </div>
+    <div class="window-frame">
+      <div class="window-pane"></div>
+      <div class="window-pane"></div>
+      <div class="window-pane"></div>
+      <div class="window-pane"></div>
+    </div>
+    <div class="sunlight"></div>
+  </div>
+
+  <header><img src="images/title.png" alt="Erin Kim Portfolio" class="header-image"></header>
+  
 
   <main class="bookshelf-container">
     <div class="bookshelf">
@@ -15,7 +31,7 @@
       <div class="shelf top-shelf">
         <div class="book-wrapper" data-project="project1">
           <div class="book">
-            <div class="front cover"><span class="cover-text">Project 1</span></div>
+            <div class="front cover"><span class="cover-text">SLUGORITHM</span></div>
             <div class="pages"></div>
             <div class="spine"></div>
             <div class="back cover">Project 1</div>
@@ -24,7 +40,7 @@
 
         <div class="book-wrapper" data-project="project2">
           <div class="book">
-            <div class="front cover"><span class="cover-text">Project 2</span></div>
+            <div class="front cover"><span class="cover-text">RESEARCH</span></div>
             <div class="pages"></div>
             <div class="spine"></div>
             <div class="back cover">Project 2</div>
@@ -33,7 +49,7 @@
 
         <div class="book-wrapper" data-project="project3">
           <div class="book">
-            <div class="front cover"><span class="cover-text">Project 3</span></div>
+            <div class="front cover"><span class="cover-text"> ☆CLOUDY☆</span></div>
             <div class="pages"></div>
             <div class="spine"></div>
             <div class="back cover">Project 3</div>
@@ -43,66 +59,66 @@
 
       <!-- Middle shelf -->
       <div class="shelf middle-shelf">
-        <div class="book-wrapper" data-project="project4">
-          <div class="book">
-            <div class="front cover"><span class="cover-text">Project 4</span></div>
-            <div class="pages"></div>
-            <div class="spine"></div>
-            <div class="back cover">Project 4</div>
+        <div class="frame-wrapper" data-project="project4">
+          <div class="picture-frame frame-small">
+            <div class="frame-border"></div>
+            <div class="frame-image"><img src="images/me.jpg" alt="Portrait photo"></div>
           </div>
         </div>
 
-        <div class="book-wrapper" data-project="project5">
-          <div class="book">
-            <div class="front cover"><span class="cover-text">Project 5</span></div>
-            <div class="pages"></div>
-            <div class="spine"></div>
-            <div class="back cover">Project 5</div>
+        <div class="decoration flower-pot">
+          <div class="pot"></div>
+          <div class="flowers">
+            <span class="flower">🌸</span>
+            <span class="flower">🌼</span>
+            <span class="flower">🌺</span>
           </div>
         </div>
 
-        <div class="book-wrapper" data-project="project6">
-          <div class="book">
-            <div class="front cover"><span class="cover-text">Project 6</span></div>
-            <div class="pages"></div>
-            <div class="spine"></div>
-            <div class="back cover">Project 6</div>
+        <div class="frame-wrapper" data-project="project5">
+          <div class="picture-frame frame-small">
+            <div class="frame-border"></div>
+            <div class="frame-image"><img src="images/gwc.png" alt="Portrait photo"></div>
           </div>
         </div>
       </div>
 
       <!-- Bottom shelf -->
       <div class="shelf bottom-shelf">
-        <div class="book-wrapper" data-project="project7">
-          <div class="book">
-            <div class="front cover"><span class="cover-text">Project 7</span></div>
-            <div class="pages"></div>
-            <div class="spine"></div>
-            <div class="back cover">Project 7</div>
+        <div class="decoration flower-pot">
+          <div class="pot"></div>
+          <div class="flowers">
+            <span class="flower">🍀</span>
+            <span class="flower">🌱</span>
+            <span class="flower">🌿</span>
           </div>
         </div>
 
-        <div class="book-wrapper" data-project="project8">
-          <div class="book">
-            <div class="front cover"><span class="cover-text">Project 8</span></div>
-            <div class="pages"></div>
-            <div class="spine"></div>
-            <div class="back cover">Project 8</div>
+        <div class="frame-wrapper" data-project="project7">
+          <div class="picture-frame frame-wide">
+            <div class="frame-border"></div>
+            <div class="frame-image"><img src="images/frame2.jpg" alt="Portrait photo"></div>
           </div>
         </div>
 
         <div class="decoration stuffed-animal">🧸</div>
-      </div>
-    </div>
-    <!-- small bedside lamp next to the bookshelf -->
-    <div class="lamp-wrapper" aria-hidden="false">
-      <div class="lamp">
-        <div class="lamp-base"></div>
-        <div class="lamp-stem"></div>
-        <div class="lamp-shade">
-          <div class="lamp-bulb"></div>
+        
+        <!-- realistic lamp on top of bookshelf -->
+        <div class="lamp-wrapper" aria-hidden="false">
+          <div class="lamp">
+            <div class="lamp-base"></div>
+            <div class="lamp-stem"></div>
+            <div class="lamp-shade">
+              <div class="lamp-bulb"></div>
+            </div>
+            <div class="lamp-cord"></div>
+            <button id="lampToggle" class="lamp-pull" aria-pressed="false" aria-label="Toggle lamp">
+              <span class="bead"></span>
+              <span class="bead"></span>
+              <span class="bead"></span>
+            </button>
+          </div>
         </div>
-        <button id="lampToggle" class="lamp-switch" aria-pressed="false" aria-label="Toggle lamp"></button>
       </div>
     </div>
   </main>

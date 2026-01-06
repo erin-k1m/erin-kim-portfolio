@@ -3,31 +3,50 @@ const projects = {
   project1: {
     title: "Slugorithm",
     pages: [
-      { type: "image", src: "images/ocean.jpg", caption:"Ocean — watercolor study" },
-      { type: "image", src: "images/ocean-detail.jpg", caption:"Detail" },
-      { type: "text", content: "<h3>Process</h3><p>Brush studies + palette choices.</p>" }
+      { type: "text", content: "</h3><p>This project is a reimagined version of Snake created as a class project and my first full-scale game developed using GDevelop and its event-based coding system. The player takes on the role of a social media user building an online community, where each segment of the snake represents a follower. </p>" },
+      { type: "text", content: "<p>The 'content' the player chooses to engage with affect community growth and 'trust'. As influence increases, the game becomes more challenging. The algorithm introduces new challenges such as negativity or brain rot. Plus, managing followers requires greater responsibility! </p>" },
+      { type: "text", content: "<p>Visual effects such as screen distortion represent the impact of negativity within the community. Slugorithm (inspired by UCSC's slug mascot + algorithm) uses classic Snake mechanics as a metaphor for the instability and responsibility that come with influence in online spaces.</p>" },
+      { type: "text", content: "<p>The Process: Story-boarding</p>" },
+      { type: "image", src: "images/storyboarding.png", caption:"<p>The process: story-boarding</p>" },
+      { type: "text", content: "<p>Final game outcome: </p>" },
+      { type: "image", src: "images/slug1.png", caption:"Game" },
+      { type: "image", src: "images/slug2.png", caption:"Detail" },
+      { type: "image", src: "images/slug3.png", caption:"Detail" },
+      { type: "text", content: "<p> Available to play here!: https://gd.games/instant-builds/64a754e9-4c10-4a31-ac48-e8a6c630e7ce</p>" }
     ]
   },
   project2: {
-    title: "Forest Illustration",
+    title: "Minecraft Research",
     pages: [
-      { type: "image", src: "images/forest.jpg" },
-      { type: "image", src: "images/forest-2.jpg" },
-      { type: "text", content: "<p>Ink sketches & composition notes.</p>" }
+      { type: "text", content: "<h3>Minecraft Research Project</h3>" },
+      { type: "text", content: "<p>Designed algorithms for procedural city generation in Minecraft using amulet, improving the efficiency of large-scale world-building tasks. Contributed to multiple building designs, with a primary focus on the design and implementation of a café structure. </p>" },
+      { type: "text", content: "<p>Developed Python scripts to automate the placement of buildings and infrastructure, significantly reducing manual labor and enhancing the overall design process. Collaborated with a team to ensure cohesive architectural styles and functional layouts within the generated cityscape. </p>" },
+      { type: "image", src: "images/code.png", caption:"Minecraft procedural city generation project" },
+      { type: "text", content: "<p>Cafe progress - ongoing </p>" },
+      { type: "image", src: "images/cafe.png" },
     ]
   },
   project3: {
-    title: "Mountain Scene",
+    title: "Cloudy Clues",
     pages: [
-      { type: "image", src: "images/mountain.jpg" },
-      { type: "text", content: "<p>Color studies.</p>" }
+      { type: "text", content: "<h3>Cloudy Clues</h3>" },
+      { type: "text", content: "<p>Cloudy Clues is an AI-driven guessing game developed by a team of 2 (Erin Kim & Tyler Benavides) during the first Supercell Hackathon. Players identify objects generated in real time by an AI character, Ms. Pea, using a text-to-3D pipeline powered by Gemini Flash 2.0, Hyper3D, and Rodin AI, built in Godot.</p>" },
+      { type: "text", content: "<p>The project demonstrates a novel approach to real-time, AI-generated 3D content in games, with future work focused on achieving faster, fully real-time text-to-3D generation for more interactive and personalized gameplay.</p>" },
+      { type: "text", content: "<p>Game screenshots: </p>" },
+      { type: "image", src: "images/cloudy3.png", caption:"Game screenshot" },
+      { type: "image", src: "images/cloudy1.png", caption:"Game screenshot" },
+      { type: "image", src: "images/cloudy2.png", caption:"Game screenshot" },
+      { type: "text", content: "<p>Source on Github https://github.com/Razorboot/reAIm2</p>" },
+      {type: "text", content: "<p>Demo video link https://www.youtube.com/watch?v=fo8PREw6jJ0</p>" },
+      {type: "text", content: "<p>Play here https://tybena.itch.io/cloudy-clues</p>" },
+      { type: "image", src: "images/supercell.JPG", caption:"Hackathon team photo" }
     ]
   },
   project4: {
     title: "Sunset Painting",
     pages: [
-      { type: "image", src: "images/sunset.jpg" },
-      { type: "image", src: "images/sunset-2.jpg" }
+      { type: "image", src: "images/me.jpg" },
+      { type: "image", src: "images/.jpg" }
     ]
   },
   project5: {
@@ -45,7 +64,7 @@ const projects = {
     ]
   },
   project7: {
-    title: "Sketchbook Studies",
+    title: "Sketchbook",
     pages: [
       { type: "image", src: "images/sketch.jpg" },
       { type: "text", content: "<p>Journal pages and notes.</p>" }
@@ -357,15 +376,73 @@ document.addEventListener('keydown', (ev) => {
 
 // Lamp toggle behavior: toggles a class on body to apply lighting styles
 if(lampToggle){
-  // restore previous lamp state if present
+  // restore previous lamp state if present, default to ON
   const saved = localStorage.getItem('lampOn');
-  if(saved === 'true') bodyEl.classList.add('lamp-on');
+  const isOn = (saved === null) ? true : (saved === 'true');
+  
+  if(isOn) {
+    bodyEl.classList.add('lamp-on');
+    lampToggle.setAttribute('aria-pressed', 'true');
+  }
 
+  const lampShade = document.querySelector('.lamp-shade');
+  
+  // Pull string interaction
+  let startY = 0;
+  let isDragging = false;
+  let hasPulled = false;
+
+  lampToggle.addEventListener('pointerdown', (e) => {
+    isDragging = true;
+    startY = e.clientY;
+    hasPulled = false;
+    lampToggle.style.transition = 'none';
+  });
+
+  lampToggle.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    const deltaY = e.clientY - startY;
+    if (deltaY > 0 && deltaY < 50) {
+      lampToggle.style.transform = `translateX(calc(-50% + 20px)) translateY(${deltaY}px)`;
+      // Toggle when pulled down enough
+      if (deltaY > 25 && !hasPulled) {
+        hasPulled = true;
+        const on = bodyEl.classList.toggle('lamp-on');
+        lampToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+        localStorage.setItem('lampOn', on ? 'true' : 'false');
+        
+        // trigger shimmy animation when turning on
+        if(on && lampShade) {
+          lampShade.classList.add('shimmy');
+          setTimeout(() => lampShade.classList.remove('shimmy'), 500);
+        }
+      }
+    }
+  });
+
+  lampToggle.addEventListener('pointerup', () => {
+    isDragging = false;
+    lampToggle.style.transition = 'transform 0.2s ease-out';
+    lampToggle.style.transform = 'translateX(calc(-50% + 20px))';
+  });
+
+  lampToggle.addEventListener('pointercancel', () => {
+    isDragging = false;
+    lampToggle.style.transition = 'transform 0.2s ease-out';
+    lampToggle.style.transform = 'translateX(calc(-50% + 20px))';
+  });
+
+  // Fallback click for tap
   lampToggle.addEventListener('click', (e) => {
-    const on = bodyEl.classList.toggle('lamp-on');
-    lampToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
-    // animate tiny button press visual by toggling a class on the element
-    if(on) lampToggle.classList.add('on'); else lampToggle.classList.remove('on');
-    localStorage.setItem('lampOn', on ? 'true' : 'false');
+    if (!hasPulled) {
+      const on = bodyEl.classList.toggle('lamp-on');
+      lampToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+      localStorage.setItem('lampOn', on ? 'true' : 'false');
+      
+      if(on && lampShade) {
+        lampShade.classList.add('shimmy');
+        setTimeout(() => lampShade.classList.remove('shimmy'), 500);
+      }
+    }
   });
 }
