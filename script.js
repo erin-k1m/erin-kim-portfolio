@@ -3,26 +3,23 @@ const projects = {
   project1: {
     title: "Slugorithm",
     pages: [
-      { type: "text", content: "</h3><p>This project is a reimagined version of Snake created as a class project and my first full-scale game developed using GDevelop and its event-based coding system. The player takes on the role of a social media user building an online community, where each segment of the snake represents a follower. </p>" },
-      { type: "text", content: "<p>The 'content' the player chooses to engage with affect community growth and 'trust'. As influence increases, the game becomes more challenging. The algorithm introduces new challenges such as negativity or brain rot. Plus, managing followers requires greater responsibility! </p>" },
-      { type: "text", content: "<p>Visual effects such as screen distortion represent the impact of negativity within the community. Slugorithm (inspired by UCSC's slug mascot + algorithm) uses classic Snake mechanics as a metaphor for the instability and responsibility that come with influence in online spaces.</p>" },
-      { type: "text", content: "<p>The Process: Story-boarding</p>" },
+      { type: "text", content: "</h3><p>This project is a reimagined version of Snake created as a class project and my first full-scale game developed using GDevelop and its event-based coding system. The player takes on the role of a social media user building an online community, where each segment of the snake represents a follower. The 'content' the player chooses to engage with affect community growth and 'trust'. As influence increases, the game becomes more challenging. The algorithm introduces new challenges such as negativity or brain rot. Plus, managing followers requires greater responsibility! Visual effects such as screen distortion represent the impact of negativity within the community. Slugorithm (inspired by UCSC's slug mascot + algorithm) uses classic Snake mechanics as a metaphor for the instability and responsibility that come with influence in online spaces. </p>" },
+      { type: "text", content: "<p>The Process: Story Boarding</p>" },
       { type: "image", src: "images/storyboarding.png", caption:"<p>The process: story-boarding</p>" },
-      { type: "text", content: "<p>Final game outcome: </p>" },
+      { type: "text", content: "<p>Game Outcome: </p>" },
       { type: "image", src: "images/slug1.png", caption:"Game" },
       { type: "image", src: "images/slug2.png", caption:"Detail" },
       { type: "image", src: "images/slug3.png", caption:"Detail" },
-      { type: "text", content: "<p> Available to play here!: https://gd.games/instant-builds/64a754e9-4c10-4a31-ac48-e8a6c630e7ce</p>" }
+      { type: "text", content: "<p> (Available to play here!) https://gd.games/instant-builds/64a754e9-4c10-4a31-ac48-e8a6c630e7ce</p>" }
     ]
   },
   project2: {
     title: "Minecraft Research",
     pages: [
       { type: "text", content: "<h3>Minecraft Research Project</h3>" },
-      { type: "text", content: "<p>Designed algorithms for procedural city generation in Minecraft using amulet, improving the efficiency of large-scale world-building tasks. Contributed to multiple building designs, with a primary focus on the design and implementation of a café structure. </p>" },
-      { type: "text", content: "<p>Developed Python scripts to automate the placement of buildings and infrastructure, significantly reducing manual labor and enhancing the overall design process. Collaborated with a team to ensure cohesive architectural styles and functional layouts within the generated cityscape. </p>" },
+      { type: "text", content: "<p>Designed algorithms for procedural city generation in Minecraft using amulet, improving the efficiency of large-scale world-building tasks. Contributed to multiple building designs, with a primary focus on the design and implementation of a café structure. Developed Python scripts to automate the placement of buildings and infrastructure, significantly reducing manual labor and enhancing the overall design process. Collaborated with a team to ensure cohesive architectural styles and functional layouts within the generated cityscape. </p>" },
       { type: "image", src: "images/code.png", caption:"Minecraft procedural city generation project" },
-      { type: "text", content: "<p>Cafe progress - ongoing </p>" },
+      { type: "text", content: "<p>Cafe Progress: </p>" },
       { type: "image", src: "images/cafe.png" },
     ]
   },
@@ -30,15 +27,12 @@ const projects = {
     title: "Cloudy Clues",
     pages: [
       { type: "text", content: "<h3>Cloudy Clues</h3>" },
-      { type: "text", content: "<p>Cloudy Clues is an AI-driven guessing game developed by a team of 2 (Erin Kim & Tyler Benavides) during the first Supercell Hackathon. Players identify objects generated in real time by an AI character, Ms. Pea, using a text-to-3D pipeline powered by Gemini Flash 2.0, Hyper3D, and Rodin AI, built in Godot.</p>" },
-      { type: "text", content: "<p>The project demonstrates a novel approach to real-time, AI-generated 3D content in games, with future work focused on achieving faster, fully real-time text-to-3D generation for more interactive and personalized gameplay.</p>" },
-      { type: "text", content: "<p>Game screenshots: </p>" },
+      { type: "text", content: "<p>Cloudy Clues is an AI-driven guessing game developed by a team of 2 (Erin Kim & Tyler Benavides) during the first Supercell Hackathon. Players identify objects generated in real time by an AI character, Ms. Pea, using a text-to-3D pipeline powered by Gemini Flash 2.0, Hyper3D, and Rodin AI, built in Godot. The project demonstrates a novel approach to real-time, AI-generated 3D content in games, with future work focused on achieving faster, fully real-time text-to-3D generation for more interactive and personalized gameplay.</p>" },
+      { type: "text", content: "<p>Game Screenshots: </p>" },
       { type: "image", src: "images/cloudy3.png", caption:"Game screenshot" },
       { type: "image", src: "images/cloudy1.png", caption:"Game screenshot" },
       { type: "image", src: "images/cloudy2.png", caption:"Game screenshot" },
-      { type: "text", content: "<p>Source on Github https://github.com/Razorboot/reAIm2</p>" },
-      {type: "text", content: "<p>Demo video link https://www.youtube.com/watch?v=fo8PREw6jJ0</p>" },
-      {type: "text", content: "<p>Play here https://tybena.itch.io/cloudy-clues</p>" },
+      { type: "text", content: "<ul><li>Source on Github: https://github.com/Razorboot/reAIm2</li><li>Demo Video: https://www.youtube.com/watch?v=fo8PREw6jJ0</li><li>Play here: https://tybena.itch.io/cloudy-clues</li></ul>" },
       { type: "image", src: "images/supercell.JPG", caption:"Hackathon team photo" }
     ]
   },
@@ -112,6 +106,7 @@ function buildClonedBook(projectKey){
   // large cloned book container
   const clone = document.createElement('div');
   clone.className = 'cloned-book';
+  clone.dataset.project = projectKey;
 
   // front face
   const front = document.createElement('div');
@@ -281,7 +276,7 @@ function nextPage(){
     current.pageIndex++;
     renderSpread();
     flip.remove();
-  }, 700);
+  }, 200);
 }
 
 function prevPage(){
@@ -308,7 +303,7 @@ function prevPage(){
     current.pageIndex--;
     renderSpread();
     flip.remove();
-  }, 700);
+  }, 200);
 }
 
 // close animation: animate cover closing then scale back and hide viewer

@@ -27,12 +27,12 @@ body{
     background: 
       radial-gradient(ellipse at 20% 30%, rgba(255,240,220,0.4) 0%, transparent 25%),
       radial-gradient(ellipse at 80% 70%, rgba(255,220,180,0.3) 0%, transparent 20%),
-      linear-gradient(180deg, #f4dcc8 0%, #e8c9b0 50%, #ddb89a 100%);
+      linear-gradient(180deg, #ffdcd5 0%, #eeb3b3 50%, #c48080 100%);
   }
   51%, 100% {
     background: 
       radial-gradient(ellipse at 15% 10%, rgba(220,230,255,0.03) 0%, transparent 12%),
-      linear-gradient(180deg, #0b1221, #0f1a2b);
+      linear-gradient(180deg, #435375, #0f1a2b);
   }
 }
 
@@ -289,8 +289,8 @@ body::before{
   box-shadow: -2px 0 4px rgba(0,0,0,.3), 2px 0 4px rgba(0,0,0,.2); 
 }
 .lamp-shade{ 
-  width:70px; 
-  height:60px; 
+  width:90px; 
+  height:80px; 
   background: linear-gradient(180deg, #f5e6d3 0%, #e8d4b8 50%, #d4c0a0 100%); 
   border-radius: 4px 4px 8px 8px; 
   position:absolute; 
@@ -386,7 +386,7 @@ body.lamp-on .lamp-wrapper::before{
   height: 280px;
   pointer-events:none; 
   z-index:-2;
-  background: radial-gradient(circle, rgba(255,240,180,0.5) 0%, rgba(255,244,200,0.35) 25%, rgba(255,244,200,0.18) 45%, rgba(255,244,210,0.08) 65%, transparent 80%);
+  background: radial-gradient(circle, rgba(255, 235, 156, 0.5) 0%, rgba(255,244,200,0.35) 25%, rgba(255,244,200,0.18) 45%, rgba(255,244,210,0.08) 65%, transparent 80%);
   mix-blend-mode: screen; 
   transition: opacity .28s ease;
 }
@@ -507,7 +507,7 @@ body.lamp-on .lamp-shade.shimmy {
 .flower-pot .pot {
   width: 50px;
   height: 40px;
-  background: linear-gradient(135deg, #b8734f 0%, #8b5a3b 50%, #6b4a2f 100%);
+  background: linear-gradient(135deg, #5e2d12 0%, #8b5a3b 50%, #562d0c 100%);
   border-radius: 4px 4px 8px 8px;
   box-shadow: 
     0 3px 6px rgba(0,0,0,0.4),
@@ -640,7 +640,7 @@ body.lamp-on .lamp-shade.shimmy {
   border-radius:2px;
   display:flex; align-items:center; justify-content:center;
   backface-visibility:hidden;
-  color:#42312c; font-weight:700; 
+  color:#ffffff; font-weight:700; 
   box-shadow: 2px 4px 10px rgb(179, 172, 172);
   transform: rotateY(0deg) translateZ(calc(var(--thickness)/2.3));
 }
@@ -651,7 +651,7 @@ body.lamp-on .lamp-shade.shimmy {
 
 /* front is the cover that will act as a movable flap (opens) */
 .front {
-  background: linear-gradient(0deg,#d65f5f,#c34d4d);
+  background: linear-gradient(0deg,#dc1616,#ef1313);
   z-index: 1;
   transform-origin: left center;
   transform: rotateY(0deg) translateZ(calc(var(--thickness)/2.3)) scaleZ(1.3);
@@ -715,12 +715,12 @@ body.lamp-on .lamp-shade.shimmy {
 .pages {
   width: var(--thickness);
   right: calc(var(--thickness) * -1);
-  background: linear-gradient(0deg,#4e1c09,#7c3e2a);;
+  background: linear-gradient(0deg,#6f5349,#60443d);;
   transform: rotateY(90deg) translateZ(calc(var(--thickness)/-2));
   z-index: 6;
   border-radius: 2px;
   box-shadow:
-    inset 0 0 6px rgba(219, 26, 26, 0.856), /* subtle overall depth */
+    inset 0 0 6px rgba(104, 92, 92, 0.856), /* subtle overall depth */
     inset 0 6px 12px rgba(54, 28, 28, 0.845), /* top edge shadow */
     inset 0 -6px 12px rgba(62, 49, 49, 0.551); /*shadow on bottom edge*/
 }
@@ -738,9 +738,50 @@ body.lamp-on .lamp-shade.shimmy {
 .book-wrapper:nth-child(7) .book { --thickness: 32px; }
 .book-wrapper:nth-child(8) .book { --thickness: 29px; }
 
+/* per-book color variants */
+.book-wrapper:nth-child(1) .front { background: linear-gradient(0deg, #dc1616, #ef1313); }
+.book-wrapper:nth-child(1) .back { background: linear-gradient(0deg, #4e1c09, #7c3e2a); }
+.book-wrapper:nth-child(1) .spine { background: linear-gradient(180deg, #8c3b3b, #b24a4a); }
+.book-wrapper:nth-child(1) .pages { background: linear-gradient(0deg, #a63333, #8c2222); }
+
+.book-wrapper:nth-child(2) .front { background: linear-gradient(0deg, #1a5f7a, #2b8fb5); }
+.book-wrapper:nth-child(2) .back { background: linear-gradient(0deg, #0f3a4f, #1a5a7a); }
+.book-wrapper:nth-child(2) .spine { background: linear-gradient(180deg, #1a5f7a, #2b8fb5); }
+.book-wrapper:nth-child(2) .pages { background: linear-gradient(0deg, #1a4f6a, #0f3a5a); }
+
+.book-wrapper:nth-child(3) .front { background: linear-gradient(0deg, #2d5f1f, #4a8a2b); }
+.book-wrapper:nth-child(3) .back { background: linear-gradient(0deg, #1a3612, #2d5f1f); }
+.book-wrapper:nth-child(3) .spine { background: linear-gradient(180deg, #2d5f1f, #4a8a2b); }
+.book-wrapper:nth-child(3) .pages { background: linear-gradient(0deg, #214f16, #1a3612); }
+
+.book-wrapper:nth-child(4) .front { background: linear-gradient(0deg, #4a2c5e, #6b4a8a); }
+.book-wrapper:nth-child(4) .back { background: linear-gradient(0deg, #2a1a3e, #4a3a5e); }
+.book-wrapper:nth-child(4) .spine { background: linear-gradient(180deg, #4a2c5e, #6b4a8a); }
+.book-wrapper:nth-child(4) .pages { background: linear-gradient(0deg, #3a1a4e, #2a0a3e); }
+
+.book-wrapper:nth-child(5) .front { background: linear-gradient(0deg, #6b4423, #8b5a3b); }
+.book-wrapper:nth-child(5) .back { background: linear-gradient(0deg, #3d2817, #5a3e2b); }
+.book-wrapper:nth-child(5) .spine { background: linear-gradient(180deg, #6b4423, #8b5a3b); }
+.book-wrapper:nth-child(5) .pages { background: linear-gradient(0deg, #5a3818, #4a2810); }
+
+.book-wrapper:nth-child(6) .front { background: linear-gradient(0deg, #7a5c3d, #a07a52); }
+.book-wrapper:nth-child(6) .back { background: linear-gradient(0deg, #4a3a2a, #6a5a3f); }
+.book-wrapper:nth-child(6) .spine { background: linear-gradient(180deg, #7a5c3d, #a07a52); }
+.book-wrapper:nth-child(6) .pages { background: linear-gradient(0deg, #6a4c2d, #5a3c1f); }
+
+.book-wrapper:nth-child(7) .front { background: linear-gradient(0deg, #5a2d2d, #8a3a3a); }
+.book-wrapper:nth-child(7) .back { background: linear-gradient(0deg, #3a1a1a, #5a2d2d); }
+.book-wrapper:nth-child(7) .spine { background: linear-gradient(180deg, #5a2d2d, #8a3a3a); }
+.book-wrapper:nth-child(7) .pages { background: linear-gradient(0deg, #6a2a2a, #4a1a1a); }
+
+.book-wrapper:nth-child(8) .front { background: linear-gradient(0deg, #2a4a6a, #3a6a9a); }
+.book-wrapper:nth-child(8) .back { background: linear-gradient(0deg, #1a2a4a, #2a4a6a); }
+.book-wrapper:nth-child(8) .spine { background: linear-gradient(180deg, #2a4a6a, #3a6a9a); }
+.book-wrapper:nth-child(8) .pages { background: linear-gradient(0deg, #1a3a5a, #0a1a3a); }
+
 /* tiny tilt variants per book to feel natural */
-.book-wrapper:nth-child(odd) .book { transform: rotateZ(-2deg); }
-.book-wrapper:nth-child(even) .book { transform: rotateZ(1.5deg); }
+.book-wrapper:nth-child(odd) .book { transform: rotateZ(-5deg); }
+.book-wrapper:nth-child(even) .book { transform: rotateZ(2deg); }
 
 /* hover (spring) */
 .book-wrapper:hover .book {
@@ -756,19 +797,19 @@ body.lamp-on .lamp-shade.shimmy {
 .book-viewer.hidden{display:none}
 
 .viewer-stage{
-  width:900px; max-width:95vw; height:560px; background:transparent;
+  width:95vw; max-width:95vw; height:90vh; background:transparent;
   pointer-events:auto; display:flex; align-items:center; justify-content:center;
 }
 
 /* book-scene: where cloned book appears and opens */
 .book-scene{
-  width:720px; height:420px; perspective:2000px; position:relative;
+  width:90vw; height:85vh; max-width:1400px; max-height:800px; perspective:2000px; position:relative;
   display:flex; align-items:center; justify-content:center;
 }
 
 /* cloned book container */
 .cloned-book{
-  width:480px; height:320px; transform-style:preserve-3d; position:relative;
+  width:min(80vw, 800px); height:min(70vh, 600px); transform-style:preserve-3d; position:relative;
   transform-origin: left center;
 }
 
@@ -783,6 +824,31 @@ body.lamp-on .lamp-shade.shimmy {
 }
 .cloned-book .back{background:#6e3d2b; color:#fff; transform: translateZ(-18px);}
 
+/* per-cloned-book colors */
+.cloned-book[data-project="project1"] .front { background: linear-gradient(0deg, #dc1616, #ef1313); }
+.cloned-book[data-project="project1"] .back { background: linear-gradient(0deg, #4e1c09, #7c3e2a); }
+
+.cloned-book[data-project="project2"] .front { background: linear-gradient(0deg, #1a5f7a, #2b8fb5); }
+.cloned-book[data-project="project2"] .back { background: linear-gradient(0deg, #0f3a4f, #1a5a7a); }
+
+.cloned-book[data-project="project3"] .front { background: linear-gradient(0deg, #2d5f1f, #4a8a2b); }
+.cloned-book[data-project="project3"] .back { background: linear-gradient(0deg, #1a3612, #2d5f1f); }
+
+.cloned-book[data-project="project4"] .front { background: linear-gradient(0deg, #4a2c5e, #6b4a8a); }
+.cloned-book[data-project="project4"] .back { background: linear-gradient(0deg, #2a1a3e, #4a3a5e); }
+
+.cloned-book[data-project="project5"] .front { background: linear-gradient(0deg, #6b4423, #8b5a3b); }
+.cloned-book[data-project="project5"] .back { background: linear-gradient(0deg, #3d2817, #5a3e2b); }
+
+.cloned-book[data-project="project6"] .front { background: linear-gradient(0deg, #7a5c3d, #a07a52); }
+.cloned-book[data-project="project6"] .back { background: linear-gradient(0deg, #4a3a2a, #6a5a3f); }
+
+.cloned-book[data-project="project7"] .front { background: linear-gradient(0deg, #5a2d2d, #8a3a3a); }
+.cloned-book[data-project="project7"] .back { background: linear-gradient(0deg, #3a1a1a, #5a2d2d); }
+
+.cloned-book[data-project="project8"] .front { background: linear-gradient(0deg, #2a4a6a, #3a6a9a); }
+.cloned-book[data-project="project8"] .back { background: linear-gradient(0deg, #1a2a4a, #2a4a6a); }
+
 /* pages container (the spread) */
 .spread{
   position:absolute; left:0; top:0; width:100%; height:100%; transform-style:preserve-3d;
@@ -793,16 +859,17 @@ body.lamp-on .lamp-shade.shimmy {
 /* each page face */
 .page{
   width:50%; height:100%;
-  padding:14px; font-size:16px; color:#111;
+  padding:14px; font-size:16px; color:#000000;
+  font-family: "Times New Roman", Times, serif;
   display:flex; align-items:center; justify-content:center;
   position:relative; overflow:hidden;
   transform-origin:left center;
-  transition: transform .65s cubic-bezier(.2,.7,.2,1);
+  transition: transform .35s cubic-bezier(.4,.0,.2,1);
 
   /* --- Ghibli Ivory Cotton Paper --- */
-  background: #f8f4e8;
+  background: #ffffff;
   background-image:
-    radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
     radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0) 45%);
   background-size: 3px 3px, 3px 3px, 100% 100%;
@@ -827,7 +894,7 @@ body.lamp-on .lamp-shade.shimmy {
 
 /* responsive tweaks */
 @media (max-width:880px){
-  .viewer-stage{ height:70vh }
-  .cloned-book{ width:360px; height:260px }
-  .book-scene{ width:94vw; height:70vh }
+  .viewer-stage{ height:92vh }
+  .cloned-book{ width:85vw; height:65vh; max-width:600px; max-height:450px; }
+  .book-scene{ width:90vw; height:88vh }
 }
