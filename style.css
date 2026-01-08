@@ -521,7 +521,7 @@ body.lamp-on .lamp-shade.shimmy {
   position: absolute;
   top: -32px;
   display: flex;
-  gap: 0px;
+  gap: 8px;
   font-size: 30px;
   filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
 }
