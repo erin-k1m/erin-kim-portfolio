@@ -37,17 +37,21 @@ const projects = {
     ]
   },
   project4: {
-    title: "Sunset Painting",
+    title: "Parking Pals",
     pages: [
-      { type: "image", src: "images/me.jpg" },
-      { type: "image", src: "images/.jpg" }
+      { type: "text", content: "<h3> Parking Pals</h3>" },
+      { type: "text", content: "<p> Parking Pals is a personal project inspired by a friend who was struggling to learn how to... parallel park. What started as a silly idea to help them practice eventually evolved into a multiplayer tycoon-style parking simulator where players can test their parking skills, complete challenges, and upgrade their vehicles. Developed in Roblox Studio and scripted in Lua, Parking Pals features an interactive driving system designed to simulate the experience of maneuvering a car into tight parking spaces. </p>" },
+      { type: "text", content: "<p> Players control their vehicles using a mouse-operated steering wheel, with WASD for acceleration and reversing and the spacebar for braking. A real-time speedometer provides feedback as players drive through different parking challenges. To determine whether a player has successfully parked, I implemented a parking validation system that checks the vehicle's position and alignment within a designated space. Successfully completing a challenge rewards players with in-game currency, which they can spend at an auto shop to upgrade their car's speed, acceleration, handling, aesthetics, and braking. These upgrades directly affect how the vehicle performs, giving players more control over their driving experience. The game also supports multiplayer, allowing players to practice parking and progress alongside others in a shared environment. Through this project, I explored vehicle controls, interactive UI elements, collision and position detection, and progression systems.</p>"},
+      { type: "image", src: "images/parkingpals2.png"},
+      { type: "image", src: "images/parkingpals.png",}
     ]
   },
   project5: {
-    title: "Cityscape",
+    title: "Contact",
     pages: [
-      { type: "image", src: "images/city.jpg" },
-      { type: "text", content: "<p>Digital passes and thumbnails.</p>" }
+      { type: "text", content: "Email: erinkim155@gmail.com"},
+      { type: "text", content: "Socials: www.linkedin.com/in/erink1m"},
+      { type: "text", content: "Location: San Jose, CA"}
     ]
   },
   project6: {
@@ -441,3 +445,6 @@ if(lampToggle){
     }
   });
 }
+
+
+//bottom of screen info slot
