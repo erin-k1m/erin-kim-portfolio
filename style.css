@@ -4,9 +4,9 @@
   --book-height: 160px;
   --book-width: 30px;
   --book-depth: 20px;
-  --bg:#f5f2ed;
-  --wood1:#a06d4d;
-  --wood2:#8b5a2b;
+  --bg:#675e4f;
+  --wood1:#74503b;
+  --wood2:#5f462f;
 }
 *{box-sizing:border-box}
 body{
@@ -27,7 +27,7 @@ body{
     background: 
       radial-gradient(ellipse at 20% 30%, rgba(255,240,220,0.4) 0%, transparent 25%),
       radial-gradient(ellipse at 80% 70%, rgba(255,220,180,0.3) 0%, transparent 20%),
-      linear-gradient(180deg, #ffdcd5 0%, #eeb3b3 50%, #c48080 100%);
+      linear-gradient(180deg, #f7f1e2 0%, #f4eedb 50%, #f2f1de 100%);
   }
   51%, 100% {
     background: 
